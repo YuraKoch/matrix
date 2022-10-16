@@ -6,27 +6,21 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const FONT_SIZE = 14;
+const FONT_SIZE = 16;
 
 const symbols = initSimbols(canvas.width, canvas.height, FONT_SIZE);
-ctx.font = FONT_SIZE + 'px monospace';
+ctx.font = `bold ${FONT_SIZE}px monospace`;
 
-let lastTime = 0;
-const TIME_DELAY = 25;
-function animate(timestamp) {
-  if (timestamp - lastTime > TIME_DELAY) {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.textAlign = 'center';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+function animate() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  ctx.textAlign = 'center';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // set symbols color
-    ctx.fillStyle = 'green';
-    symbols.forEach(symbol => symbol.draw(ctx));
+  // set symbols color
+  ctx.fillStyle = 'green';
+  symbols.forEach(symbol => symbol.draw(ctx));
 
-    lastTime = timestamp;
-  }
-
-  requestAnimationFrame(animate);
+  setTimeout(() => requestAnimationFrame(animate), 100);
 }
 
-animate(0);
+animate();

@@ -23,7 +23,7 @@ function animate() {
 
   // set symbols color
   context.fillStyle = 'green';
-  columns.forEach(column => column.drawSymbol(context));
+  columns.forEach(column => column.drawSymbol());
 
   setTimeout(() => requestAnimationFrame(animate), 50);
 }

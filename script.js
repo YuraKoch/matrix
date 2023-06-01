@@ -42,3 +42,40 @@ window.addEventListener('resize', () => {
   initColumns();
   context.clearRect(0, 0, canvas.width, canvas.height);
 });
+
+
+// audio
+
+// Создаем элемент аудио
+var audio = new Audio('./assets/audio/sound.mp3'); // Путь к звуку 'audio.mp3
+
+// Устанавливаем атрибуты для аудио
+audio.loop = true; // Устанавливаем зацикливание музыки
+audio.volume = 0.5; // Устанавливаем громкость (от 0 до 1)
+
+// Вставляем элемент аудио на страницу
+document.body.appendChild(audio);
+
+// Создаем кнопку для управления музыкой
+var audio_button = document.createElement('button'); // Создаем кнопку
+audio_button.innerHTML = 'Play music'; // Устанавливаем название кнопки
+audio_button.style.position = 'absolute'; // Устанавливаем абсолютное позиционирование
+audio_button.style.top = '10px'; // Устанавливаем отступ сверху
+audio_button.style.left = '10px'; // Устанавливаем отступ слева
+audio_button.style.zIndex = '100'; // Устанавливаем z-index
+audio_button.style.padding = '10px'; // Устанавливаем отступ внутри кнопки
+audio_button.style.borderRadius = '5px'; // Устанавливаем радиус скругления уголков
+audio_button.style.border = 'none'; // Устанавливаем границу
+audio_button.style.outline = 'none'; // Убираем контур
+audio_button.onclick = function() {
+  if (audio.paused) { // Проверяем, если аудио на паузе
+    audio.play(); // Запускаем
+    audio_button.innerHTML = 'Pause music'; // Меняем название кнопки
+  } else { // Иначе
+    audio.pause(); // Ставим на паузу
+    audio_button.innerHTML = 'Play music'; // Меняем название кнопки
+  }
+}
+// Вставляем кнопку на страницу
+document.body.appendChild(audio_button);
+
